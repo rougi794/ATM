@@ -1,0 +1,298 @@
+
+
+
+
+
+from random import randint
+
+balance = 10000
+Electricity_bill = randint(100, 300)
+Water_bill = randint(50, 150)
+phone_bill = randint(300, 680)
+
+class ATM :
+    dict_pass = dict(name="Abdullah", pas=1234)
+
+
+
+    def __init__(self):
+        print("Welcome to our bank atm service")
+        self.identity_verification()
+
+
+
+
+    def identity_verification(self):
+
+        attempts = 0
+
+        try:
+            while (attempts < 3) :
+
+                username = input("Enter your name : ").strip().capitalize()
+                password = int(input("Enter your passowrd : "))
+
+                if username == self.dict_pass['name'] and password == self.dict_pass['pas'] :
+
+                    print(f"Welcome {self.dict_pass['name']}")
+
+                    self.listـofـservices()
+
+                    break
+
+                else:
+
+                    attempts += 1
+
+                    print("error, try again")
+
+                    if (attempts < 3) :
+
+                        print(f"You have a number of { 3 -attempts}")
+
+                    else:
+
+                        print("Sorry, you have exceeded the maximum number of attempts")
+
+                    continue
+        except ValueError :
+            print("Please enter numbers only in the password field")
+
+
+
+
+
+
+
+    def listـofـservices(self):
+
+
+
+            agin = "Y"
+            while agin == "Y" :
+                services = int(input("""
+        1 - To withdraw cash, press number '1' .
+        2 - To inquire about the balance, press '2' .
+        3 - To pay the bills, press '3' .
+        4 - To transfer money, press '4' .
+                
+Please enter the number : """).strip())
+
+                if (services == 1) :
+                    self.withdraw_cash()
+                    agin = input("To return enter 'Y' and to exit enter 'N' : ").upper().strip()
+                    if agin == "N":
+                        print("Thank you for using our ATM")
+                        break
+                    continue
+                elif (services == 2) :
+                    self.inquire_the_balance()
+                    agin = input("To return enter 'Y' and to exit enter 'N' : ").upper().strip()
+                    if agin == "N":
+                        print("Thank you for using our ATM")
+                        break
+                    continue
+                elif (services == 3) :
+                    self.pay_the_bills()
+                    agin = input("To return enter 'Y' and to exit enter 'N' : ").upper().strip()
+                    if agin == "N":
+                        print("Thank you for using our ATM")
+                        break
+                    continue
+                elif (services == 4) :
+                    self.transfer_money()
+                    agin = input("To return enter 'Y' and to exit enter 'N' : ").upper().strip()
+                    if agin == "N":
+                        print("Thank you for using our ATM")
+                        break
+                    continue
+                else:
+                    print("Please select from the previous menu .")
+                agin = input("To return enter 'Y' and to exit enter 'N' : ").upper().strip()
+                if agin == "N" :
+                    print("Thank you for using our ATM")
+                    break
+
+
+    def withdraw_cash(self):
+
+
+
+        print("""
+        Please enter the required amount :
+        1 - 50SR, Press '1' .
+        2 - 100SR, Press '2' .
+        3 - 200SR, Press '3' .
+        4 - 500SR, Press '4' .
+        5 - 1000SR, Press '5' .
+        6 - Another amount, Press '6' .
+        """)
+
+
+        The_amountـrequired = int(input("Please enter the number : ").strip())
+
+        global balance
+
+
+
+
+        if (The_amountـrequired == 1) :
+            if 50 < balance :
+                print("please wait ... ")
+                print("Take the card to get cash .")
+                balance -= 50
+                print(f'You have balance remaining {balance}SR .')
+            elif 50 > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+
+        elif (The_amountـrequired == 2) :
+            if 100 < balance :
+                print("please wait ... ")
+                print("Take the card to get cash .")
+                balance -= 100
+                print(f'You have balance remaining {balance}SR .')
+            elif 100 > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        elif (The_amountـrequired == 3) :
+            if 200 < balance :
+                print("please wait ... ")
+                print("Take the card to get cash .")
+                balance -= 200
+                print(f'You have balance remaining {balance}SR .')
+            elif 200 > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        elif (The_amountـrequired == 4) :
+            if 500 < balance :
+                print("please wait ... ")
+                print("Take the card to get cash .")
+                balance -= 500
+                print(f'You have balance remaining {balance}SR .')
+            elif 500 > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        elif (The_amountـrequired == 5) :
+            if 1000 < balance :
+                print("please wait ... ")
+                print("Take the card to get cash .")
+                balance -= 1000
+                print(f'You have balance remaining {balance}SR .')
+            elif 1000 > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        elif (The_amountـrequired == 6) :
+            Anotherـamount = int(input("Enter the amount : ").strip())
+            if Anotherـamount < balance :
+                print("please wait ... ")
+                print("Take the card to get cash .")
+                balance -= Anotherـamount
+                print(f'You have balance remaining {balance}SR .')
+            elif Anotherـamount > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        else:
+            print("Please select from the previous menu .")
+
+        # elif The_amountـrequired > balance :
+        #     print("Sorry, the amount is not available in your balance")
+
+        currentـbalance = balance
+
+
+    def pay_the_bills(self):
+
+        global balance
+
+        global Electricity_bill
+        global Water_bill
+        global phone_bill
+
+        print(f"""
+        1 - Electricity Company, The value of the bill ({Electricity_bill}SR) press '1' .
+        2 - Water Company, The value of the bill ({Water_bill}SR) Press '2' .
+        3 - Phone company, The value of the bill ({phone_bill}SR) press '3' .
+        """)
+        SelectCompany = int(input("Please choose the required invoice : ").strip())
+
+
+        if SelectCompany == 1 :
+            if Electricity_bill < balance :
+                print("please wait ... ")
+                print(f"An amount of {Electricity_bill}SR has been deposited with the Electricity Company .")
+                balance -= Electricity_bill
+                Electricity_bill = 0
+                print(f'You have balance remaining {balance}SR .')
+            elif Electricity_bill > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        elif SelectCompany == 2 :
+            if Water_bill < balance :
+                print("please wait ... ")
+                print(f"An amount of {Water_bill}SR has been deposited with the Water Company .")
+                balance -= Water_bill
+                Water_bill = 0
+                print(f'You have balance remaining {balance}SR .')
+            elif Water_bill > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        elif SelectCompany == 3 :
+            if phone_bill < balance :
+                print("please wait ... ")
+                print(f"An amount of {phone_bill}SR has been deposited with the Water Company .")
+                balance -= phone_bill
+                phone_bill = 0
+                print(f'You have balance remaining {balance}SR .')
+            elif phone_bill > balance :
+                print("Sorry, the amount is not available in your balance .")
+
+        else:
+            print("Please select from the previous menu .")
+
+        # elif Electricity_bill > balance or Water_bill > balance or phone_bill > balance :
+        #     print("Sorry, the amount is not available in your balance")
+
+
+
+    def transfer_money(self):
+        global balance
+
+        print("Enter the 16-digit account number you want to transfer to .")
+        account = input("SA").strip()
+        Transfer_amount = int(input("Enter the amount to be transferred : "))
+
+        if Transfer_amount < balance :
+            if len(account) == 16 :
+                sure = int(input(f"Are you sure you want to transfer to this account? \n '{account}'\n ."
+                             f"If you are sure, press '1', and to cancel press '2' : ").strip())
+                if sure == 1 :
+                    print(f"{Transfer_amount}SR have been transferred .")
+                    balance -= Transfer_amount
+                    print(f"Your current balance {balance}SR .")
+                elif sure == 2 :
+                    print("was canceled .")
+                else:
+                    print("Please enter numbers only .")
+            elif len(account) < 16 :
+                print("There is a shortage of numbers .")
+            elif len(account) > 16 :
+                print("The number of numbers is more than 16 .")
+            else:
+                print("Please enter numbers only .")
+
+        elif Transfer_amount > balance :
+            print("Sorry, the amount is not available in your balance .")
+
+        currentـbalance = balance
+
+
+
+    def inquire_the_balance(self):
+
+        global balance
+        currentـbalance = balance
+        print(f"available balance {balance}SR .")
+
+if __name__ == '__main__':
+    ATM()
